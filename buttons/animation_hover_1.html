@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Animated Buttons with Hover Effects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2c3e50;
+            flex-direction: column;
+        }
+
+        a {
+            position: relative;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #222f3e;
+            margin: 40px;
+            transition: 1s;
+            text-decoration: none;
+            overflow: hidden;
+            /* make dropdown shadow */
+            -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+        }
+
+        a span {
+            z-index: 1;
+            color: #8395a7;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 600;
+            transition: 1s;
+        }
+
+        a:hover span {
+            color: #c8d6e5;
+        }
+
+        a:hover {
+            background: var(--clr);
+            box-shadow: 0 0 10px var(--clr),
+                0 0 30px var(--clr),
+                0 0 60px var(--clr),
+                0 0 100px var(--clr);
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 400px;
+            background: var(--clr);
+            transition: 1s;
+            animation: animate 2s linear infinite;
+            animation-delay: calc(0.33s * var(--i));
+        }
+
+        a:hover::before {
+            width: 100%;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+
+            }
+        }
+
+        a::after {
+            content: '';
+            inset: 4px;
+            position: absolute;
+            background: #222f3e;
+            transition: 0.5s;
+        }
+
+        a:hover::after {
+            background: var(--clr);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" style="--clr:#2ecc71;--i:0"><span>Button</span></a>
+    <a href="#" style="--clr:#e74c3c;--i:1"><span>Button</span></a>
+    <a href="#" style="--clr:#3498db;--i:2"><span>Button</span></a>
+</body>
+
+</html>
