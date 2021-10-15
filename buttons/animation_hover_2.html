@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Button Hover Effects | Neon Light Button Animation Effects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            background: #2f3640;
+        }
+
+        a {
+            position: relative;
+            padding: 10px 20px;
+            margin: 0 30px;
+            color: #f5f6fa;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 20px;
+            overflow: hidden;
+            transition: 0.5s;          
+            -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0003)  
+        }
+
+        a:hover{
+            color: #2f3640;
+            background: var(--clr);
+            box-shadow: 0 0 50px var(--clr);
+            transition-delay: 0.5s;
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid var(--clr);
+            border-left: 2px solid var(--clr);
+            transition: 0.5s;
+            transition-delay: 0.5s;
+        }
+
+        a:hover::before {
+            width: 100%;
+            height: 100%;
+            transition-delay: 0s;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            border-bottom: 2px solid var(--clr);
+            border-right: 2px solid var(--clr);
+            transition: 0.5s;
+            transition-delay: 0.5s;
+        }
+
+        a:hover::after {
+            width: 100%;
+            height: 100%;
+            transition-delay: 0s;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" style="--clr:#e84118;">Button</a>
+    <a href="#" style="--clr:#fbc531;">Button</a>
+    <a href="#" style="--clr:#4cd137;">Button</a>
+</body>
+
+</html>
