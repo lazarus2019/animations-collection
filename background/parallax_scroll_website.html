@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Parallax Scrolling Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(#2b1055, #7597de);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header .logo {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+
+        header ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        header ul li a:hover,
+        header ul li a.active {
+            background: #fff;
+            color: #2b1055;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #2b1055, transparent);
+            z-index: 1000;
+        }
+
+        section img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        section img#moon {
+            mix-blend-mode: screen;
+        }
+
+        section img#mountains_front {
+            z-index: 10;
+        }
+
+        #text {
+            position: absolute;
+            right: -350px;
+            color: #fff;
+            white-space: nowrap;
+            font-size: 7vw;
+            z-index: 9;
+        }
+
+        #btn {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 40px;
+            background: #fff;
+            color: #2b1055;
+            font-size: 1.5em;
+            z-index: 9;
+            transform: translateY(100px);
+        }
+
+        .sec {
+            position: relative;
+            padding: 100px;
+            background: #2b1055;
+        }
+
+        .sec h2 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .sec p {
+            font-size: 1.2em;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo">Logo</a>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </header>
+    <section>
+        <img src="../assets/images/stars.png" id="stars">
+        <img src="../assets/images/moon.png" id="moon">
+        <img src="../assets/images/mountains_behind.png" id="mountains_behind">
+        <h2 id="text">Moon Light</h2>
+        <a href="#" id="btn">Explore</a>
+        <img src="../assets/images/mountains_front.png" id="mountains_front">
+    </section>
+    <div class="sec">
+        <h2>Parallax Scrolling Effect</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat aspernatur ipsam repudiandae alias labore
+            rerum culpa, odit ea. Architecto neque consequatur eius soluta illum quos, nisi alias? Expedita, aliquid
+            natus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aliquam voluptatibus autem unde
+            blanditiis in sed pariatur eveniet illo eum, dignissimos tempore, harum voluptates placeat consequatur minus
+            vero quae veniam? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi amet veritatis a in
+            tempore maiores corporis qui sint, porro sunt ratione laudantium placeat officia, esse pariatur quam eius
+            eligendi quos! <br><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat aspernatur ipsam
+            repudiandae alias labore rerum culpa, odit ea. Architecto neque consequatur eius soluta illum quos, nisi
+            alias? Expedita, aliquid natus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aliquam
+            voluptatibus autem unde blanditiis in sed pariatur eveniet illo eum, dignissimos tempore, harum voluptates
+            placeat consequatur minus vero quae veniam? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
+            amet veritatis a in tempore maiores corporis qui sint, porro sunt ratione laudantium placeat officia, esse
+            pariatur quam eius eligendi quos! <br><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat
+            aspernatur ipsam repudiandae alias labore rerum culpa, odit ea. Architecto neque consequatur eius soluta
+            illum quos, nisi alias? Expedita, aliquid natus! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem aliquam voluptatibus autem unde blanditiis in sed pariatur eveniet illo eum, dignissimos tempore,
+            harum voluptates placeat consequatur minus vero quae veniam? Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Animi amet veritatis a in tempore maiores corporis qui sint, porro sunt ratione laudantium
+            placeat officia, esse pariatur quam eius eligendi quos! <br><br>Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Placeat aspernatur ipsam repudiandae alias labore rerum culpa, odit ea. Architecto neque
+            consequatur eius soluta illum quos, nisi alias? Expedita, aliquid natus! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Dolorem aliquam voluptatibus autem unde blanditiis in sed pariatur eveniet
+            illo eum, dignissimos tempore, harum voluptates placeat consequatur minus vero quae veniam? Lorem ipsum
+            dolor sit, amet consectetur adipisicing elit. Animi amet veritatis a in tempore maiores corporis qui sint,
+            porro sunt ratione laudantium placeat officia, esse pariatur quam eius eligendi quos!</p>
+    </div>
+</body>
+<script>
+    let stars = document.querySelector('#stars');
+    let moon = document.querySelector('#moon');
+    let mountains_behind = document.querySelector('#mountains_behind');
+    let mountains_front = document.querySelector('#mountains_front');
+    let text = document.querySelector('#text');
+    let btn = document.querySelector('#btn');
+    let header = document.querySelector('header');
+
+    window.addEventListener('scroll', ()=>{
+        let value = window.scrollY;
+        stars.style.left = value * 0.25 + 'px';
+        moon.style.top = value * 1.05 + 'px';
+        mountains_behind.style.top = value * 0.5 + 'px';
+        mountains_front.style.top = value * 0 + 'px';
+        text.style.marginRight = value * 4 + 'px';
+        text.style.marginTop = value * 1.5 + 'px';
+        btn.style.marginTop = value * 1.5 + 'px';
+        header.style.top = value * 0.5 + 'px';
+
+    });
+</script>
+
+</html>
