@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Ribbon Shape Heading Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ribbon-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ribbon {
+            position: relative;
+            max-width: 400px;
+            margin: 1rem 2.5rem;
+            padding: 4rem 2rem;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 2rem;
+        }
+
+        .ribbon h2 {
+            position: relative;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 25px;
+            /* padding-bottom: 10px; */
+        }
+
+        /* 
+        .ribbon h2::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 15%;
+            height: 4px;
+            margin: auto;
+            background-color: #ffa502;
+            transition: 0.3s;
+        }
+
+        .ribbon h2:hover::before{
+            width: 100%;
+        } */
+
+
+        .ribbon p {
+            font-size: 16px;
+        }
+
+        .ribbon p:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        /* Ribbons style */
+
+        /* ====RIBBON STYLE 1==== */
+
+        .ribbon-1 {
+            position: absolute;
+            width: 90%;
+            height: 2rem;
+            top: 1rem;
+            left: -1rem;
+            background-color: #1e90ff;
+            border-radius: 1.5rem;
+            border-bottom-left-radius: 0;
+        }
+
+        .ribbon-1::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            left: 0;
+            width: 1rem;
+            height: 1.5rem;
+            background-color: #0f67c0;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            z-index: 2;
+        }
+
+        .ribbon-1::after {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            left: 0;
+            width: 1rem;
+            height: 1.3rem;
+            background-color: #1e90ff;
+        }
+
+        /* ====RIBBON STYLE 2==== */
+
+        .ribbon-2 {
+            position: absolute;
+            width: 110%;
+            height: 30px;
+            top: 1rem;
+            left: -20px;
+            background-color: #ffa502;
+        }
+
+        .ribbon-2::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #dd9002;
+            border-top: 10px solid #dd9002;
+        }
+
+
+        .ribbon-2::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #dd9002;
+            border-top: 10px solid #dd9002;
+        }
+
+        /* ====RIBBON STYLE 3==== */
+
+        .ribbon-3 {
+            position: absolute;
+            width: 80%;
+            height: 30px;
+            top: 1rem;
+            left: -20px;
+            background-color: #2ed573;
+        }
+
+        .ribbon-3::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #29bb66;
+            border-top: 10px solid #29bb66;
+        }
+
+
+        .ribbon-3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-right: 20px solid #fff;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid transparent;
+            border-top: 15px solid transparent;
+        }
+
+        /* ====RIBBON STYLE 4==== */
+
+        .ribbon-4 {
+            position: absolute;
+            width: 80%;
+            height: 30px;
+            top: 1rem;
+            left: -20px;
+            background-color: #57606f;
+        }
+
+        .ribbon-4::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #48505c;
+            border-top: 10px solid #48505c;
+        }
+
+
+        .ribbon-4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-right: 20px solid #fff;
+            border-bottom: 15px solid #fff;
+            border-left: 15px solid transparent;
+            border-top: 15px solid #fff;
+        }
+
+        /* ====RIBBON STYLE 5==== */
+
+        .ribbon-5 {
+            position: absolute;
+            top: 1rem;
+            left: -20px;
+            width: 110%;
+            height: 30px;
+            background-color: #EA2027;
+        }
+
+        .ribbon-5::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #af0c11;
+            border-top: 10px solid #af0c11;
+        }
+
+        .ribbon-5::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #af0c11;
+            border-top: 10px solid #af0c11;
+        }
+
+        .ribbon-5 .left {
+            position: absolute;
+            top: 20px;
+            left: -25px;
+            border-right: 30px solid #EA2027;
+            border-bottom: 15px solid #EA2027;
+            border-left: 15px solid transparent;
+            border-top: 15px solid #EA2027;
+            z-index: -1;
+        }
+
+        .ribbon-5 .right {
+            position: absolute;
+            top: 20px;
+            right: -25px;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #EA2027;
+            border-left: 30px solid #EA2027;
+            border-top: 15px solid #EA2027;
+            z-index: -1;
+        }
+
+        .ribbon-5 span {
+            display: block;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: .5px;
+        }
+
+        /* ====RIBBON STYLE 6==== */
+
+        .ribbon-6 {
+            position: absolute;
+            top: 1rem;
+            left: -20px;
+            width: 110%;
+            height: 30px;
+            background-color: #5758BB;
+        }
+
+        .ribbon-6::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #494b9e;
+            border-top: 10px solid #494b9e;
+        }
+
+        .ribbon-6::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 0;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #494b9e;
+            border-top: 10px solid #494b9e;
+        }
+
+        .ribbon-6 .right {
+            position: absolute;
+            top: 20px;
+            right: -25px;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #5758BB;
+            border-left: 30px solid #5758BB;
+            border-top: 15px solid #5758BB;
+            z-index: -1;
+        }
+
+        .ribbon-6 span {
+            display: block;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: .5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ribbon-container">
+        <div class="ribbon">
+            <div class="ribbon-1"></div>
+            <h2>Ribbon Style 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+        <div class="ribbon">
+            <div class="ribbon-2"></div>
+            <h2>Ribbon Style 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+        <div class="ribbon">
+            <div class="ribbon-3"></div>
+            <h2>Ribbon Style 3</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+        <div class="ribbon">
+            <div class="ribbon-4"></div>
+            <h2>Ribbon Style 4</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+        <div class="ribbon">
+            <div class="ribbon-5">
+                <div class="left"></div>
+                <div class="right"></div>
+                <span>Ribbon content</span>
+            </div>
+            <h2>Ribbon Style 5</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+        <div class="ribbon">
+            <div class="ribbon-6">
+                <div class="right"></div>
+                <span>Ribbon content</span>
+            </div>
+            <h2>Ribbon Style 6</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quaerat vel aliquid. Eum minima odio fuga,
+                perspiciatis quo vel. Odio, nulla molestiae! Sed mollitia fuga optio, quod quos deleniti earum. </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, autem fugiat. Neque ut labore minus,
+                repellat unde dicta doloribus mollitia ipsum iste dolorum accusantium sed soluta illum sequi explicabo
+                delectus.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
