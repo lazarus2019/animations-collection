@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Range Slide Background CSS & Javascript</title>
+
+    <style>
+
+        :root{
+            --percent: 50%;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .percent{
+            position: relative;     
+            color: transparent;       
+            font-size: 6rem;
+            height: 76px;
+            line-height: 66px;
+            font-weight: 1000;
+            text-align: center;
+            -webkit-text-stroke: 2px #fff;
+            margin-bottom: 2rem;
+            padding: 0;
+            z-index: 2;
+        }
+
+        .percent::after{
+            content: attr(data-content);
+            position: absolute;
+            width: 100%;
+            height: 76px;
+            line-height: 66px;
+            left: 0;
+            top: 0;
+            color: #00adff;
+            clip-path: polygon(0 var(--percent), 100% var(--percent), 100% 100%, 0% 100%);
+            overflow: hidden;
+        }
+
+        .front__bg {
+            top: 0;
+            left: 0;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .back__bg {
+            top: 0;
+            left: 0;
+            position: fixed;
+            width: 50%;
+            height: 100vh;
+            overflow: hidden;
+            border-right: 5px solid #fff;
+            z-index: 1;
+        }
+
+        .back__bg img {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #range_bg {
+            width: 400px;
+            height: 15px;
+            -webkit-appearance: none;
+            background: rgba(0, 0, 0, .8);
+            /* outline: 2px solid #151515; */
+            outline: none;
+            box-shadow: 0 0 0 2px #151515;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #range_bg::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #00adff;
+            border: 4px solid #222;
+            box-shadow: -407px 0 0 400px #00adff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="range__controller">
+        <div data-content="50%" class="percent">
+            50%
+        </div>
+        <input type="range" id="range_bg" max="100" min="0" step="1">
+    </div>
+    <img src="../assets/images/bg1.jpg" class="front__bg">
+    <div class="back__bg">
+        <img src="../assets/images/bg2.jpg">
+    </div>
+</body>
+<script>
+    const percent = document.querySelector('.percent');
+    const range = document.querySelector('#range_bg');
+    const picture = document.querySelector('.back__bg');
+    range.addEventListener('input', () => {
+        const value = range.value + '%';
+        // percent.style.clipPath = `polygon(0 ${100 - value}%, 100% ${100 - value}%, 100% 100%, 0% 100%)`;
+        picture.style.width = value;
+        percent.innerHTML = value;
+        percent.setAttribute('data-content', value);
+        document.documentElement.style.setProperty('--percent', (100 - range.value) + '%');
+    })
+</script>
+
+</html>
