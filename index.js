@@ -1,0 +1,124 @@
+const folders = [
+  'background',
+  'buttons',
+  'cards',
+  'checkboxes',
+  'image',
+  'others',
+  'validation',
+];
+
+const regexMatchHTMLFile = /href="([^"]+\.html)"/g;
+
+const mainElement = document.getElementsByTagName('main')[0];
+const backToTopButton = document.getElementById('back-to-top');
+const toggleTOCButton = document.getElementById('toggle-toc-button');
+const tocElement = document.getElementById('table-of-contents');
+
+backToTopButton.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+toggleTOCButton.addEventListener('click', () => {
+  tocElement.classList.toggle('hidden');
+});
+
+function loadFolder(folder) {
+  return $.ajax({
+    url: `./${folder}/`,
+    method: 'GET',
+    dataType: 'html',
+  })
+    .then((html) => {
+      // html is a page that contains links to all files in the folder
+      const matches = [...html.matchAll(regexMatchHTMLFile)];
+      return matches.map((match) => match[1]);
+    })
+    .catch((error) => {
+      console.error(`Error loading folder ${folder}:`, error);
+    });
+}
+
+function getAnimationName(filePath) {
+  const parts = filePath.split('/');
+  const fileName = parts[parts.length - 1];
+
+  const nameWithoutExtension = fileName.replace('.html', '');
+
+  const words = nameWithoutExtension.split(/[-_]/);
+  const titleCased = words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  return titleCased;
+}
+
+function generateIframe(filePath, animationName) {
+  const iframe = document.createElement('iframe');
+  iframe.src = filePath;
+  iframe.loading = 'lazy';
+  iframe.title = animationName;
+  iframe.allowFullscreen = true;
+
+  return iframe;
+}
+
+function generateAnimationHeading(animationName) {
+  const heading = document.createElement('h3');
+  heading.textContent = animationName;
+  return heading;
+}
+
+function generateAnimationCategory(folder, files) {
+  if (!folder || !files || files.length === 0) return;
+
+  const section = document.createElement('section');
+  const heading = document.createElement('h2');
+  heading.id = folder;
+  heading.textContent = folder.charAt(0).toUpperCase() + folder.slice(1);
+  section.appendChild(heading);
+
+  const container = document.createElement('div');
+  container.className = 'animation-container';
+  files.forEach((filePath) => {
+    const animationName = getAnimationName(filePath);
+
+    const iframe = generateIframe(filePath, animationName);
+
+    const heading = generateAnimationHeading(animationName);
+
+    container.appendChild(heading);
+    container.appendChild(iframe);
+  });
+
+  section.appendChild(container);
+  mainElement.appendChild(section);
+}
+
+function generateTableOfContents(folders) {
+  folders.forEach((folder) => {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${folder}`;
+    link.textContent = folder.charAt(0).toUpperCase() + folder.slice(1);
+    listItem.appendChild(link);
+    tocElement.appendChild(listItem);
+  });
+}
+
+async function init() {
+  const allFiles = {};
+  for (const folder of folders) {
+    const files = await loadFolder(folder);
+    console.log('🚀 ~ init ~ files:', files);
+    allFiles[folder] = files;
+  }
+
+  for (const folder of folders) {
+    generateAnimationCategory(folder, allFiles[folder]);
+  }
+
+  generateTableOfContents(folders);
+}
+
+init();

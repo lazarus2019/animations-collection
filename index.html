@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview all the animations collection</title>
+
+    <style>
+      :root {
+        --primary-color: #124170;
+        --secondary-color: #67c090;
+        --background-color: #ddf4e7;
+        --text-color: #26667f;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      body {
+        background: var(--background-color);
+        color: var(--text-color);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      main {
+        max-width: 1280px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      iframe {
+        width: 100%;
+        height: 800px;
+        border: none;
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin: 2rem 0;
+        color: var(--background-color);
+        text-shadow: 5px 5px 0 var(--primary-color),
+          10px 10px 0 var(--secondary-color);
+        animation: shadow-dance 3s infinite;
+      }
+
+      @keyframes shadow-dance {
+        0%,
+        100% {
+          text-shadow: 3px 3px 0 var(--primary-color),
+            6px 6px 0 var(--secondary-color);
+        }
+        50% {
+          text-shadow: -3px -3px 0 var(--secondary-color),
+            -6px -6px 0 var(--primary-color);
+        }
+      }
+
+      h2 {
+        display: inline-block;
+        scroll-margin-top: 40px;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+        font-style: italic;
+        position: relative;
+        color: var(--primary-color);
+      }
+
+      h2::before {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        width: 115%;
+        background-color: var(--secondary-color);
+        height: 60%;
+        left: 50%;
+        transform: translateX(-50%) skew(-20deg);
+        bottom: 0;
+        transition: height 0.3s ease;
+      }
+
+      h2:hover::before {
+        height: 15%;
+      }
+
+      h3 {
+        margin-bottom: 1.25rem;
+      }
+
+      #back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: var(--background-color);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+      }
+
+      #back-to-top svg {
+        color: var(--primary-color);
+      }
+
+      #back-to-top::before {
+        /* spinning line around the button */
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-top: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-left: 2px solid var(--secondary-color);
+        border-right: 2px solid var(--secondary-color);
+        border-radius: 50%;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .table-of-contents-container {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+      }
+
+      #toggle-toc-button {
+        background-color: var(--background-color);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        outline: none;
+        margin-bottom: 1rem;
+        border: 2px solid var(--primary-color);
+      }
+
+      #table-of-contents {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        background-color: var(--background-color);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgb(from var(--primary-color) r g b / 0.5);
+        max-height: 80vh;
+        overflow-y: auto;
+        text-align: left;
+      }
+
+      #table-of-contents.hidden {
+        display: none;
+      }
+
+      #table-of-contents li {
+        list-style-type: none;
+        padding: 0.25rem 0.5rem;
+      }
+    </style>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Animations collection</h1>
+
+    <main>
+      <!-- Github redirection -->
+      <span></span>
+
+      <div class="table-of-contents-container">
+        <button id="toggle-toc-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-table-of-contents-icon lucide-table-of-contents"
+          >
+            <path d="M16 5H3" />
+            <path d="M16 12H3" />
+            <path d="M16 19H3" />
+            <path d="M21 5h.01" />
+            <path d="M21 12h.01" />
+            <path d="M21 19h.01" />
+          </svg>
+        </button>
+        <div id="table-of-contents"></div>
+      </div>
+
+      <button id="back-to-top">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevrons-up-icon lucide-chevrons-up"
+        >
+          <path d="m17 11-5-5-5 5" />
+          <path d="m17 18-5-5-5 5" />
+        </svg>
+      </button>
+    </main>
+  </body>
+
+  <script src="./index.js"></script>
+</html>
