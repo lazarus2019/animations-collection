@@ -90,8 +90,19 @@
         height: 15%;
       }
 
-      h3 {
-        margin-bottom: 1.25rem;
+      .animation-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 0.25rem;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .animation-link:hover {
+        color: var(--secondary-color);
       }
 
       #back-to-top {
@@ -152,6 +163,7 @@
       }
 
       #table-of-contents {
+        display: none;
         position: absolute;
         right: 0;
         top: 40px;
@@ -164,8 +176,8 @@
         text-align: left;
       }
 
-      #table-of-contents.hidden {
-        display: none;
+      #table-of-contents.show {
+        display: block;
       }
 
       #table-of-contents li {

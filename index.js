@@ -20,7 +20,7 @@ backToTopButton.addEventListener('click', () => {
 });
 
 toggleTOCButton.addEventListener('click', () => {
-  tocElement.classList.toggle('hidden');
+  tocElement.classList.toggle('show');
 });
 
 function loadFolder(folder) {
@@ -69,6 +69,21 @@ function generateAnimationHeading(animationName) {
   return heading;
 }
 
+function generateHeadingLinkToAnimation(filePath, animationName) {
+  const link = document.createElement('a');
+  link.className = 'animation-link';
+  link.href = filePath;
+  link.target = '_self';
+
+  link.innerHTML = externalLinkSvg;
+
+  const heading = generateAnimationHeading(animationName);
+
+  link.insertBefore(heading, link.firstChild);
+
+  return link;
+}
+
 function generateAnimationCategory(folder, files) {
   if (!folder || !files || files.length === 0) return;
 
@@ -85,7 +100,7 @@ function generateAnimationCategory(folder, files) {
 
     const iframe = generateIframe(filePath, animationName);
 
-    const heading = generateAnimationHeading(animationName);
+    const heading = generateHeadingLinkToAnimation(filePath, animationName);
 
     container.appendChild(heading);
     container.appendChild(iframe);
@@ -122,3 +137,5 @@ async function init() {
 }
 
 init();
+
+const externalLinkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>`;
