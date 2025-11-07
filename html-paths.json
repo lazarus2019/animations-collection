@@ -1,0 +1,28 @@
+{
+  "background": [
+    "background/curtain_layer_menu.html",
+    "background/parallax_scroll_website.html",
+    "background/range_slide_background.html"
+  ],
+  "buttons": [
+    "buttons/animation_hover_1.html",
+    "buttons/animation_hover_2.html"
+  ],
+  "cards": [
+    "cards/3d_card_hover.html",
+    "cards/ribbon_shape_collections.html",
+    "cards/vanilla_card_hover_1.html"
+  ],
+  "checkboxes": [
+    "checkboxes/toggle_smile_1.html"
+  ],
+  "image": [
+    "image/preview_image_upload.html"
+  ],
+  "others": [
+    "others/contact_info_hover.html"
+  ],
+  "validation": [
+    "validation/email_validation.html"
+  ]
+}

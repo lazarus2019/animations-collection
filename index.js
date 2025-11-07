@@ -1,15 +1,4 @@
-const folders = [
-  'background',
-  'buttons',
-  'cards',
-  'checkboxes',
-  'image',
-  'others',
-  'validation',
-];
-
-const regexMatchHTMLFile = /href="([^"]+\.html)"/g;
-
+/* Variable declaration & event */
 const mainElement = document.getElementsByTagName('main')[0];
 const backToTopButton = document.getElementById('back-to-top');
 const toggleTOCButton = document.getElementById('toggle-toc-button');
@@ -23,22 +12,7 @@ toggleTOCButton.addEventListener('click', () => {
   tocElement.classList.toggle('show');
 });
 
-function loadFolder(folder) {
-  return $.ajax({
-    url: `./${folder}/`,
-    method: 'GET',
-    dataType: 'html',
-  })
-    .then((html) => {
-      // html is a page that contains links to all files in the folder
-      const matches = [...html.matchAll(regexMatchHTMLFile)];
-      return matches.map((match) => match[1]);
-    })
-    .catch((error) => {
-      console.error(`Error loading folder ${folder}:`, error);
-    });
-}
-
+/* Generate HTML functions */
 function getAnimationName(filePath) {
   const parts = filePath.split('/');
   const fileName = parts[parts.length - 1];
@@ -121,13 +95,23 @@ function generateTableOfContents(folders) {
   });
 }
 
-async function init() {
-  const allFiles = {};
-  for (const folder of folders) {
-    const files = await loadFolder(folder);
-    console.log('🚀 ~ init ~ files:', files);
-    allFiles[folder] = files;
+/* Loading & process data functions */
+async function loadJsonHTMLPaths() {
+  try {
+    const response = await fetch('./html-paths.json');
+    const data = await response.json();
+
+    return {
+      folders: Object.keys(data),
+      allFiles: data,
+    };
+  } catch (error) {
+    console.error('Error loading html-paths.json:', error);
   }
+}
+
+async function init() {
+  const { folders, allFiles } = await loadJsonHTMLPaths();
 
   for (const folder of folders) {
     generateAnimationCategory(folder, allFiles[folder]);
@@ -138,4 +122,5 @@ async function init() {
 
 init();
 
+/* Other variables */
 const externalLinkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>`;
